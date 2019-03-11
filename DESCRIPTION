@@ -11,8 +11,14 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
+Depends:
+    R (>= 3.2),
+    stats
 Suggests: 
     testthat
 Imports: 
-    sjlabelled,
-    dplyr
+    sjlabelled (>= 1.0.16.9),
+    dplyr,
+    tidyr,
+    magrittr,
+    readxl

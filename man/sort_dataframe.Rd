@@ -4,7 +4,7 @@
 \alias{sort_dataframe}
 \title{Sort Dataframe}
 \usage{
-sort_dataframe(df)
+sort_dataframe(df, formats_df = formats, post_dm = FALSE)
 }
 \arguments{
 \item{df}{dataframe}
