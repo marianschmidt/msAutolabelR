@@ -1,11 +1,18 @@
 Package: msAutolabelleR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Helper Functions to Automatically Label Dataframes Using a Format Table
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Marian Schmidt
+Maintainer: Marian Schmidt <marian.schmidt@tum.de>
+Description: The sjlabelled package provides very helpful functions on labelling dataframes.
+  This package provides helper functions to automatically label existing dataframes using an external
+  Excel-Table that defines variable labels and formats.
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.1.1
+Suggests: 
+    testthat
+Imports: 
+    sjlabelled,
+    dplyr
