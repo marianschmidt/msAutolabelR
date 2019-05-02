@@ -16,13 +16,13 @@ read_formats_xlsx <- function(infile_formats, sheet = NULL) {
 
   #create columns for factor transformation. "var_values" and "var_valnames".
   a <- formats %>%
-    dplyr::select(dplyr::contains("Value Label ")) %>%
+    dplyr::select(dplyr::contains("Value_label_")) %>%
     colnames() %>%
     length()
 
   for(i in 1:a) {
     formats <- formats %>%
-      tidyr::separate(paste0("Value Label ", i, sep=""), into = c(paste0("var_value",i,sep=""),paste0("var_valname",i,sep="")), sep = "\\=", remove=FALSE)
+      tidyr::separate(paste0("Value_label_", i, sep=""), into = c(paste0("var_value",i,sep=""),paste0("var_valname",i,sep="")), sep = "\\=", remove=FALSE)
   }
   return(formats)
 
