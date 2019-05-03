@@ -4,7 +4,7 @@
 \alias{label_vars_dataframe}
 \title{Apply variable labels to dataframe}
 \usage{
-label_vars_dataframe(df, formats_df, post_dm = FALSE)
+label_vars_dataframe(df, formats_df = formats, post_dm = FALSE)
 }
 \arguments{
 \item{df}{dataframe}

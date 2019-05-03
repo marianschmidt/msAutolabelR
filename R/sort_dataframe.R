@@ -48,7 +48,7 @@ sort_dataframe <- function(df, formats_df = formats, post_dm = FALSE) {
 
   sort_vars <- formats_df %>%
     dplyr::filter(Sorting_order > 0) %>%
-        dplyr::arrange(Sorting_order)  %>%
+    dplyr::arrange(Sorting_order)  %>%
     dplyr::select(Variable_name) %>%
     as.vector() %>%
     unname() %>%
