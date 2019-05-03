@@ -37,7 +37,7 @@
 #'                       Value_labels = c(NA, "yes", NA, NA, "yes"),
 #'                       stringsAsFactors = FALSE)
 #'
-#' lite_df <- drop_vars_from_dataframe(df = df_example, formats_df = formats, post_dm = FALSE, drop_cmd = "drop")
+#' lite_df <- drop_vars_from_dataframe(df = df_example, formats_df = formats)
 
 
 drop_vars_from_dataframe <- function(df, formats_df = formats, post_dm = FALSE, drop_cmd = "drop") {

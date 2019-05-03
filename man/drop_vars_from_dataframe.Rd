@@ -27,5 +27,25 @@ dataframe
 Drop the variables defined in the format table from a specific dataframe.
 }
 \examples{
+#simple example dataframe
+df_example <- data.frame(ID = c("10001", "10002", "10003"),
+                         sex = c(0, 1, 2),
+                         birth = c("2015-01-05", "2016-07-30", "2015-01-01"),
+                         region = c("DE11", "DE12", "DE1X"),
+                         region_num = c(11,12,19),
+                         stringsAsFactors = FALSE)
 
+#example definitions of variable formats and labels
+formats <- data.frame(Variable_name = c("ID", "sex", "birth", "region", "region_num"),
+                      Variable_label = c("Patient ID", "Gender", "Date of birth [YYYY-MM-DD]",
+                      "Region (NUTS-2 Code)", "Region [numeric]"),
+                      Variable_type = c("String", "Labelled num", "Date", "String", "Labelled num"),
+                      Sorting_order = c(1,3,2,4,5),
+                      Import_format = c("chr", "num", "chr", "chr", "not imported"),
+                      Drop_from_analysis_file = c(NA, NA, NA, "drop", NA),
+                      Missing_values = c(NA, NA, NA, NA, "19"),
+                      Value_labels = c(NA, "yes", NA, NA, "yes"),
+                      stringsAsFactors = FALSE)
+
+lite_df <- drop_vars_from_dataframe(df = df_example, formats_df = formats)
 }
