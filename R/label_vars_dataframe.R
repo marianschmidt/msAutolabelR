@@ -28,8 +28,7 @@ label_vars_dataframe <- function(df, formats_df = formats, post_dm = FALSE) {
 
 
   for(i in 1:nrow(formats_label)){
-    df <- df %>%
-      sjlabelled::var_labels(!!formats_label$`Variable_name`[i] := !!formats_label$`Variable_label`[i])
+    df <- df %>% sjlabelled::var_labels(!!formats_label$`Variable_name`[i] := !!formats_label$`Variable_label`[i])
   }
   return(df)
 
