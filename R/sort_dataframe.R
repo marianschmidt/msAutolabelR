@@ -40,13 +40,17 @@
 
 sort_dataframe <- function(df, formats_df = formats, post_dm = FALSE) {
 
+  #delete drop vars and not imported vars from format file used for labelling
+  formats_label <- formats_df %>%
+    dplyr::filter(is.na(Drop_from_analysis_file))
+
   #for pre datamanagement steps (post_dm=FALSE) new variables (not imported) do not exist yet and are omitted
   if (post_dm == FALSE) {
-    formats_df <- formats_df %>%
+    formats_label <- formats_label %>%
       dplyr::filter(Import_format != "not imported")
   }
 
-  sort_vars <- formats_df %>%
+  sort_vars <- formats_label %>%
     dplyr::filter(Sorting_order > 0) %>%
     dplyr::arrange(Sorting_order)  %>%
     dplyr::select(Variable_name) %>%
