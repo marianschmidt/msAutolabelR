@@ -2,6 +2,7 @@
 
 export("%>%")
 export(.data)
+export(change_formats_dataframe)
 export(drop_vars_from_dataframe)
 export(enexpr)
 export(enexprs)
