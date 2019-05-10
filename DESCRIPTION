@@ -1,7 +1,7 @@
-Package: msAutolabelleR
+Package: msAutolabelR
 Type: Package
 Title: Helper Functions to Automatically Label Dataframes Using a Format Table
-Version: 0.1.0
+Version: 0.1.1
 Author: Marian Schmidt
 Maintainer: Marian Schmidt <marian.schmidt@tum.de>
 Description: The sjlabelled package provides very helpful functions on labelling dataframes.
@@ -18,7 +18,7 @@ Suggests:
     testthat,
     roxygen2
 Imports: 
-    sjlabelled (>= 1.0.16.9),
+    sjlabelled (>= 1.0.17),
     dplyr,
     tidyr,
     magrittr,

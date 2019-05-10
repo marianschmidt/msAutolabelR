@@ -1,4 +1,4 @@
 library(testthat)
-library(msAutolabelleR)
+library(msAutolabelR)
 
-test_check("msAutolabelleR")
+test_check("msAutolabelR")
