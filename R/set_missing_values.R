@@ -37,10 +37,14 @@ set_missing_values <- function(df, formats_df = formats, post_dm = FALSE) {
         dplyr::select_if(function(x) !(all(is.na(x)))) %>%
         unlist()
 
-      if(!is.numeric(sj_miss)){
+      if((!is.numeric(sj_miss)) & length(sj_miss)>0){
       sj_miss <- strsplit(sj_miss, split = ",") %>%
         unlist %>%
         as.numeric()
+      }
+
+      if(formats_label$Variable_type[i]=="Labelled num" & !is.numeric(unlist(delir[formats_label$Variable_name[i]]))){
+        warning("Variable is not numeric anymore. Execute set_missing_values() BEFORE change_formats_dataframe()")
       }
 
       if(length(sj_miss)>0){
