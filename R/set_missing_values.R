@@ -37,9 +37,11 @@ set_missing_values <- function(df, formats_df = formats, post_dm = FALSE) {
         dplyr::select_if(function(x) !(all(is.na(x)))) %>%
         unlist()
 
+      if(!is.numeric(sj_miss)){
       sj_miss <- strsplit(sj_miss, split = ",") %>%
         unlist %>%
         as.numeric()
+      }
 
       if(length(sj_miss)>0){
 
