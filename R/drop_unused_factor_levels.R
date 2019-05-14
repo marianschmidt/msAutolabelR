@@ -15,10 +15,10 @@ drop_unused_factor_levels <- function(df, var_selection = c("_all")) {
 
   #drop factor levels
   if(var_selection == "_all"){
-  df %>% df %>%
+  df %>%
     dplyr::mutate_if(is.factor, as.factor)
   } else {
-    df %>% df %>%
+    df %>%
       dplyr::mutate_at(var_selection, as.factor)
   }
 
