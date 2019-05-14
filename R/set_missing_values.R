@@ -9,12 +9,14 @@
 #' @param post_dm Logical; if \code{FALSE}, all \code{variables} are added as part of data management steps
 #'                defined as \code{"not imported"} in column \code{Import_format} of the formats file will be
 #'                omitted.
+#' @param var_selection Character vector of selected variables to be set missing. Default \code{var_selection = c("all")} means that
+#'                      all variables are selected
 #'
 #' @return dataframe
 #' @export
 
 
-set_missing_values <- function(df, formats_df = formats, post_dm = FALSE) {
+set_missing_values <- function(df, formats_df = formats, post_dm = FALSE, var_selection = c("_all")) {
 
   #delete drop vars and not imported vars from format file used for labelling
   formats_label <- formats_df %>%
@@ -29,7 +31,8 @@ set_missing_values <- function(df, formats_df = formats, post_dm = FALSE) {
 
   #apply value labels
   for(i in 1:nrow(formats_label)){
-    if(!is.na(formats_label$Missing_values[i])){
+    if(!is.na(formats_label$Missing_values[i]) &&
+       (var_selection == "_all" || (formats_label$Variable_name[i] %in% var_selection) )){
 
       sj_miss <- formats %>%
         dplyr::select(c("Missing_values")) %>%

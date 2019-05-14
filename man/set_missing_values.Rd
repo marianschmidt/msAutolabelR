@@ -4,7 +4,8 @@
 \alias{set_missing_values}
 \title{Set missing values for dataframe}
 \usage{
-set_missing_values(df, formats_df = formats, post_dm = FALSE)
+set_missing_values(df, formats_df = formats, post_dm = FALSE,
+  var_selection = c("_all"))
 }
 \arguments{
 \item{df}{dataframe}
@@ -15,6 +16,9 @@ If needed run function \code{read_formats_xlsx.R} beforehand.}
 \item{post_dm}{Logical; if \code{FALSE}, all \code{variables} are added as part of data management steps
 defined as \code{"not imported"} in column \code{Import_format} of the formats file will be
 omitted.}
+
+\item{var_selection}{Character vector of selected variables to be set missing. Default \code{var_selection = c("all")} means that
+all variables are selected}
 }
 \value{
 dataframe
