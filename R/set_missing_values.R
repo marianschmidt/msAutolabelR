@@ -53,7 +53,7 @@ set_missing_values <- function(df, formats_df = formats, post_dm = FALSE, var_se
       if(length(sj_miss)>0){
 
         df <- df %>%
-          sjlabelled::set_na(!!formats_label$Variable_name[i], na = sj_miss, drop.levels = TRUE, as.tag = FALSE)
+          sjlabelled::set_na(!!formats_label$Variable_name[i], na = sj_miss, drop.levels = TRUE, as.tag = TRUE)
       }
     }
   }
