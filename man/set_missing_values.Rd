@@ -5,7 +5,7 @@
 \title{Set missing values for dataframe}
 \usage{
 set_missing_values(df, formats_df = formats, post_dm = FALSE,
-  var_selection = c("_all"))
+  omit_labelled = FALSE, var_selection = c("_all"))
 }
 \arguments{
 \item{df}{dataframe}
@@ -17,8 +17,11 @@ If needed run function \code{read_formats_xlsx.R} beforehand.}
 defined as \code{"not imported"} in column \code{Import_format} of the formats file will be
 omitted.}
 
+\item{omit_labelled}{Logical; if \code{TRUE}, all \code{variables} that are already labelled, will be omitted.
+Default is \code{omit_tagged = FALSE}, so that all previously labelled variables will be tagged again.}
+
 \item{var_selection}{Character vector of selected variables to be set missing. Default \code{var_selection = c("all")} means that
-all variables are selected}
+all variables are selected.}
 }
 \value{
 dataframe

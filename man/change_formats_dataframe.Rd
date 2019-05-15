@@ -5,7 +5,7 @@
 \title{Change formats of columns in dataframe}
 \usage{
 change_formats_dataframe(df, formats_df = formats, char_vars = FALSE,
-  factor_vars = FALSE, post_dm = FALSE)
+  factor_vars = FALSE, post_dm = FALSE, var_selection = c("_all"))
 }
 \arguments{
 \item{df}{dataframe}
@@ -25,6 +25,9 @@ changed to \code{sjlabelled::as_label, keep.labels = TRUE}.}
 \item{post_dm}{Logical; if \code{FALSE}, all \code{variables} are added as part of data management steps
 defined as \code{"not imported"} in column \code{Import_format} of the formats file will be
 omitted.}
+
+\item{var_selection}{Character vector of selected variables will be changed. Default \code{var_selection = c("all")} means that
+all variables are selected.}
 }
 \value{
 dataframe

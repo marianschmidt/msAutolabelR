@@ -4,7 +4,8 @@
 \alias{label_values_dataframe}
 \title{Apply value labels to dataframe}
 \usage{
-label_values_dataframe(df, formats_df = formats, post_dm = FALSE)
+label_values_dataframe(df, formats_df = formats, post_dm = FALSE,
+  omit_labelled = FALSE, var_selection = c("_all"))
 }
 \arguments{
 \item{df}{dataframe}
@@ -15,6 +16,13 @@ If needed run function \code{read_formats_xlsx.R} beforehand.}
 \item{post_dm}{Logical; if \code{FALSE}, all \code{variables} are added as part of data management steps
 defined as \code{"not imported"} in column \code{Import_format} of the formats file will be
 omitted.}
+
+\item{omit_labelled}{Logical; if \code{TRUE}, all \code{variables} that are already labelled, will be omitted.
+Default is \code{omit_tagged = FALSE}, so that all previously labelled variables will be tagged again.
+That will re-add factor levels to variables where \code{set_missing_values} was already applied.}
+
+\item{var_selection}{Character vector of selected variables to be labelled. Default \code{var_selection = c("all")} means that
+all variables are selected.}
 }
 \value{
 dataframe
