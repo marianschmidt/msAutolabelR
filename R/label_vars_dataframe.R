@@ -52,7 +52,10 @@ label_vars_dataframe <- function(df, formats_df = formats, post_dm = FALSE, omit
 
     #give warning in case combination of omit_labelled and var_selection creates a problem
     problematic_vars <- var_selection[(var_selection %in% prev_labelled)]
-    warning("The following variables defined in var_selection have been previously labelled. There is a conflict between the omit_lablled=TRUE option and var_selection.", problematic_vars)
+    if(var_selection != "_all" && (length(proproblematic_vars) > 0)) {
+
+      warning("The following variables defined in var_selection have been previously labelled. There is a conflict between the omit_lablled=TRUE option and var_selection.", problematic_vars)
+    }
 
     #limit formats to variables that are in list of not labelled
     formats_label <- formats_label  %>%
@@ -70,6 +73,8 @@ label_vars_dataframe <- function(df, formats_df = formats, post_dm = FALSE, omit
       dplyr::filter(Variable_name %in% var_selection)
 
   }
+
+  #apply variable labels
 
   for(i in 1:nrow(formats_label)){
     df <- df %>% sjlabelled::var_labels(!!formats_label$`Variable_name`[i] := !!formats_label$`Variable_label`[i])
