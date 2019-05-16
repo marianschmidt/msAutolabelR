@@ -44,15 +44,15 @@ set_missing_values <- function(df, formats_df = formats, post_dm = FALSE, omit_l
 
     #get names of labelled variables in df
     prev_not_labelled <- df %>%
-      select_if(has_no_label) %>%
+      dplyr::select_if(has_no_label) %>%
       colnames()
     prev_labelled <- df %>%
-      select_if(has_no_label) %>%
+      dplyr::select_if(has_no_label) %>%
       colnames()
 
     #give warning in case combination of omit_labelled and var_selection creates a problem
     problematic_vars <- var_selection[(var_selection %in% prev_labelled)]
-    if(var_selection != "_all" && (length(proproblematic_vars) > 0)) {
+    if(var_selection != "_all" && (length(problematic_vars) > 0)) {
 
     warning("The following variables defined in var_selection have been previously labelled. There is a conflict between the omit_lablled=TRUE option and var_selection.", problematic_vars)
     }
@@ -90,7 +90,7 @@ set_missing_values <- function(df, formats_df = formats, post_dm = FALSE, omit_l
         as.numeric()
       }
 
-      if(formats_label$Variable_type[i]=="Labelled num" & !is.numeric(unlist(delir[formats_label$Variable_name[i]]))){
+      if(formats_label$Variable_type[i]=="Labelled num" & !is.numeric(unlist(df[formats_label$Variable_name[i]]))){
         warning("Variable is not numeric anymore. Execute set_missing_values() BEFORE change_formats_dataframe()")
       }
 
