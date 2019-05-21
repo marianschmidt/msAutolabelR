@@ -78,7 +78,7 @@ set_missing_values <- function(df, formats_df = formats, post_dm = FALSE, omit_l
   for(i in 1:nrow(formats_label)){
     if(!is.na(formats_label$Missing_values[i])){
 
-      sj_miss <- formats %>%
+      sj_miss <- formats_label %>%
         dplyr::select(c("Missing_values")) %>%
         dplyr::filter(dplyr::row_number() == i) %>%
         dplyr::select_if(function(x) !(all(is.na(x)))) %>%
