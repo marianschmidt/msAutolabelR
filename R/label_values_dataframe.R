@@ -53,9 +53,9 @@ label_values_dataframe <- function(df, formats_df = formats, post_dm = FALSE, om
 
     #give warning in case combination of omit_labelled and var_selection creates a problem
     problematic_vars <- var_selection[(var_selection %in% prev_labelled)]
-    if(var_selection != "_all" && (length(problematic_vars) > 0)) {
+    if(all(var_selection != "_all") && (length(problematic_vars) > 0)) {
 
-      warning("The following variables defined in var_selection have been previously labelled. There is a conflict between the omit_lablled=TRUE option and var_selection.", problematic_vars)
+      warning("The following variables defined in var_selection have been previously labelled. There is a conflict between the omit_lablled=TRUE option and var_selection: ", problematic_vars)
     }
 
     #limit formats to variables that are in list of not labelled
@@ -64,11 +64,15 @@ label_values_dataframe <- function(df, formats_df = formats, post_dm = FALSE, om
   }
 
   ###4 cond - limit variables on option var_selection
-  if (var_selection != "_all") {
+  if(all(var_selection != "_all")) {
 
     #give warning in case variables defined in var_selection do not exist
+
     not_found <- var_selection[!(var_selection %in% formats_label$Variable_name)]
-    warning("The following variables defined in var_selection are not found in the formats file: ", not_found)
+
+    if(length(not_found) > 0) {
+      warning("The following variables defined in var_selection are not found in the formats file: ", not_found)
+    }
 
     formats_label <- formats_label  %>%
       dplyr::filter(Variable_name %in% var_selection)

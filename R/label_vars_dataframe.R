@@ -35,7 +35,7 @@ label_vars_dataframe <- function(df, formats_df = formats, post_dm = FALSE, omit
 
     #function to find out if value labels have been previously applied
     has_no_label <- function(x) {
-      if(length(attr(x, "label")) > 0) {
+      if(length(attr(x, "labels")) > 0) {
         return(FALSE)
       } else {
         return(TRUE)
@@ -52,9 +52,9 @@ label_vars_dataframe <- function(df, formats_df = formats, post_dm = FALSE, omit
 
     #give warning in case combination of omit_labelled and var_selection creates a problem
     problematic_vars <- var_selection[(var_selection %in% prev_labelled)]
-    if(var_selection != "_all" && (length(problematic_vars) > 0)) {
+    if(all(var_selection != "_all") && (length(problematic_vars) > 0)) {
 
-      warning("The following variables defined in var_selection have been previously labelled. There is a conflict between the omit_lablled=TRUE option and var_selection.", problematic_vars)
+      warning("The following variables defined in var_selection have been previously labelled. There is a conflict between the omit_lablled=TRUE option and var_selection: ", problematic_vars)
     }
 
     #limit formats to variables that are in list of not labelled
@@ -63,18 +63,22 @@ label_vars_dataframe <- function(df, formats_df = formats, post_dm = FALSE, omit
   }
 
   ###4 cond - limit variables on option var_selection
-  if (var_selection != "_all") {
+  if(all(var_selection != "_all")) {
 
     #give warning in case variables defined in var_selection do not exist
+
     not_found <- var_selection[!(var_selection %in% formats_label$Variable_name)]
-    warning("The following variables defined in var_selection are not found in the formats file: ", not_found)
+
+    if(length(not_found) > 0) {
+      warning("The following variables defined in var_selection are not found in the formats file: ", not_found)
+    }
 
     formats_label <- formats_label  %>%
       dplyr::filter(Variable_name %in% var_selection)
 
   }
 
-  #apply variable labels
+  ### apply variable labels ###
 
   for(i in 1:nrow(formats_label)){
     df <- df %>% sjlabelled::var_labels(!!formats_label$`Variable_name`[i] := !!formats_label$`Variable_label`[i])

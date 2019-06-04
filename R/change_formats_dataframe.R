@@ -36,11 +36,15 @@ change_formats_dataframe <- function(df, formats_df = formats, char_vars = FALSE
   }
 
   ###4 cond - limit variables on option var_selection
-  if (var_selection != "_all") {
+  if(all(var_selection != "_all")) {
 
     #give warning in case variables defined in var_selection do not exist
+
     not_found <- var_selection[!(var_selection %in% formats_label$Variable_name)]
-    warning("The following variables defined in var_selection are not found in the formats file: ", not_found)
+
+    if(length(not_found) > 0) {
+      warning("The following variables defined in var_selection are not found in the formats file: ", not_found)
+    }
 
     formats_label <- formats_label  %>%
       dplyr::filter(Variable_name %in% var_selection)
