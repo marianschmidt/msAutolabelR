@@ -58,6 +58,14 @@ sort_dataframe <- function(df, formats_df = formats, post_dm = FALSE) {
     unname() %>%
     unlist()
 
+  #ignore additional variables in format file that cannot be found in df and just return message about it. Still sort everything.
+  not_found <- sort_vars[!(sort_vars %in% colnames(df))]
+
+  message(paste0("The following variables in the formats file are not present in the df and are therefore omitted from sorting: ",
+                paste(not_found, collapse = ", ")))
+
+  sort_vars <- sort_vars[sort_vars %in% colnames(df)]
+
   df %>%
     dplyr::select(sort_vars, dplyr::everything())
 }
