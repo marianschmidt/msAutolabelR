@@ -22,12 +22,12 @@ restore_missing_values <- function(df, formats_df = formats, post_dm = FALSE, om
 
   ###1 delete drop vars and not imported vars from format file used for labelling
   formats_label <- formats_df %>%
-    dplyr::filter(is.na(Drop_from_analysis_file))
+    dplyr::filter(is.na(.data$Drop_from_analysis_file))
 
   ###2 cond - for pre datamanagement steps (post_dm=FALSE) new variables (not imported) do not exist yet and are omitted
   if (post_dm == FALSE) {
     formats_label <- formats_label  %>%
-      dplyr::filter(Import_format != "not imported")
+      dplyr::filter(.data$Import_format != "not imported")
   }
 
   ###3 cond - if (omit_labelled=TRUE) previously labelled variables are omitted
@@ -59,7 +59,7 @@ restore_missing_values <- function(df, formats_df = formats, post_dm = FALSE, om
 
     #limit formats to variables that are in list of not labelled
     formats_label <- formats_label  %>%
-      dplyr::filter(Variable_name %in% prev_not_labelled)
+      dplyr::filter(.data$Variable_name %in% prev_not_labelled)
   }
 
   ###4 cond - limit variables on option var_selection
@@ -74,7 +74,7 @@ restore_missing_values <- function(df, formats_df = formats, post_dm = FALSE, om
     }
 
     formats_label <- formats_label  %>%
-      dplyr::filter(Variable_name %in% var_selection)
+      dplyr::filter(.data$Variable_name %in% var_selection)
 
   }
 
@@ -119,7 +119,7 @@ restore_missing_values <- function(df, formats_df = formats, post_dm = FALSE, om
 
         #replace NAs with numeric values
         df <- df %>%
-          mutate_at(formats_label$Variable_name[i], ~tidyr::replace_na(., sj_miss))
+          dplyr::mutate_at(formats_label$Variable_name[i], ~tidyr::replace_na(., sj_miss))
 
       }
 
@@ -133,8 +133,8 @@ restore_missing_values <- function(df, formats_df = formats, post_dm = FALSE, om
 
         #replace NAs with factor level
         df <- df %>%
-          mutate_at(formats_label$Variable_name[i], ~forcats::fct_expand(., !!sj_miss_lab)) %>%
-          mutate_at(formats_label$Variable_name[i], ~tidyr::replace_na(., !!sj_miss_lab))
+          dplyr::mutate_at(formats_label$Variable_name[i], ~forcats::fct_expand(., !!sj_miss_lab)) %>%
+          dplyr::mutate_at(formats_label$Variable_name[i], ~tidyr::replace_na(., !!sj_miss_lab))
 
       }
 

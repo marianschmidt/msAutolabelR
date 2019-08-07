@@ -24,12 +24,12 @@ drop_vars_from_dataframe <- function(df, formats_df = formats, post_dm = FALSE, 
   #for pre datamanagement steps (post_dm=FALSE) new variables (not imported) do not exist yet and are omitted
   if (post_dm == FALSE) {
     formats_df <- formats_df %>%
-      dplyr::filter(Import_format != "not imported")
+      dplyr::filter(.data$Import_format != "not imported")
   }
 
   drop_vars <- formats_df %>%
-    dplyr::filter(Drop_from_analysis_file == drop_cmd) %>%
-    dplyr::select(Variable_name) %>%
+    dplyr::filter(.data$Drop_from_analysis_file == drop_cmd) %>%
+    dplyr::select(.data$Variable_name) %>%
     as.vector() %>%
     unname() %>%
     unlist()

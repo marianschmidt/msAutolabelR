@@ -27,12 +27,12 @@ change_formats_dataframe <- function(df, formats_df = formats, char_vars = FALSE
 
   #delete drop vars and not imported vars from format file used for labelling
   formats_label <- formats_df %>%
-    dplyr::filter(is.na(Drop_from_analysis_file))
+    dplyr::filter(is.na(.data$Drop_from_analysis_file))
 
   #for pre datamanagement steps (post_dm=FALSE) new variables (not imported) do not exist yet and are omitted
   if (post_dm == FALSE) {
     formats_label <- formats_label  %>%
-      dplyr::filter(Import_format != "not imported")
+      dplyr::filter(.data$Import_format != "not imported")
   }
 
   ###4 cond - limit variables on option var_selection
@@ -47,15 +47,15 @@ change_formats_dataframe <- function(df, formats_df = formats, char_vars = FALSE
     }
 
     formats_label <- formats_label  %>%
-      dplyr::filter(Variable_name %in% var_selection)
+      dplyr::filter(.data$Variable_name %in% var_selection)
 
   }
 
   #make character variables
   if (char_vars == TRUE) {
     char_vars <- formats_label %>%
-      dplyr::filter(Variable_type=="String") %>%
-      dplyr::select(Variable_name) %>%
+      dplyr::filter(.data$Variable_type=="String") %>%
+      dplyr::select(.data$Variable_name) %>%
       as.vector() %>%
       unname() %>%
       unlist()
@@ -68,8 +68,8 @@ change_formats_dataframe <- function(df, formats_df = formats, char_vars = FALSE
   #make labelled nums factor variables
   if (factor_vars == TRUE) {
     factor_vars <- formats_label %>%
-      dplyr::filter(Variable_type=="Labelled num" & (Measurement_level=="Nominal" | Measurement_level=="Ordinal")) %>%
-      dplyr::select(Variable_name) %>%
+      dplyr::filter(.data$Variable_type=="Labelled num" & (.data$Measurement_level=="Nominal" | .data$Measurement_level=="Ordinal")) %>%
+      dplyr::select(.data$Variable_name) %>%
       as.vector() %>%
       unname() %>%
       unlist()
