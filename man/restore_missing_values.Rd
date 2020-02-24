@@ -4,8 +4,13 @@
 \alias{restore_missing_values}
 \title{Restore missing values for dataframe}
 \usage{
-restore_missing_values(df, formats_df = formats, post_dm = FALSE,
-  omit_labelled = FALSE, var_selection = c("_all"))
+restore_missing_values(
+  df,
+  formats_df = formats,
+  post_dm = FALSE,
+  omit_labelled = FALSE,
+  var_selection = c("_all")
+)
 }
 \arguments{
 \item{df}{dataframe}

@@ -4,8 +4,12 @@
 \alias{drop_vars_from_dataframe}
 \title{Drop Variables From Dataframe}
 \usage{
-drop_vars_from_dataframe(df, formats_df = formats, post_dm = FALSE,
-  drop_cmd = "drop")
+drop_vars_from_dataframe(
+  df,
+  formats_df = formats,
+  post_dm = FALSE,
+  drop_cmd = "drop"
+)
 }
 \arguments{
 \item{df}{dataframe}

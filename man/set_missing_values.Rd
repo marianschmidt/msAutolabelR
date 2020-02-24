@@ -4,8 +4,13 @@
 \alias{set_missing_values}
 \title{Set missing values for dataframe}
 \usage{
-set_missing_values(df, formats_df = formats, post_dm = FALSE,
-  omit_labelled = FALSE, var_selection = c("_all"))
+set_missing_values(
+  df,
+  formats_df = formats,
+  post_dm = FALSE,
+  omit_labelled = FALSE,
+  var_selection = c("_all")
+)
 }
 \arguments{
 \item{df}{dataframe}

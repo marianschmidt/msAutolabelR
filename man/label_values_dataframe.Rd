@@ -4,8 +4,13 @@
 \alias{label_values_dataframe}
 \title{Apply value labels to dataframe}
 \usage{
-label_values_dataframe(df, formats_df = formats, post_dm = FALSE,
-  omit_labelled = FALSE, var_selection = c("_all"))
+label_values_dataframe(
+  df,
+  formats_df = formats,
+  post_dm = FALSE,
+  omit_labelled = FALSE,
+  var_selection = c("_all")
+)
 }
 \arguments{
 \item{df}{dataframe}

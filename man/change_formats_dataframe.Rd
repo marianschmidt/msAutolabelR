@@ -4,8 +4,14 @@
 \alias{change_formats_dataframe}
 \title{Change formats of columns in dataframe}
 \usage{
-change_formats_dataframe(df, formats_df = formats, char_vars = FALSE,
-  factor_vars = FALSE, post_dm = FALSE, var_selection = c("_all"))
+change_formats_dataframe(
+  df,
+  formats_df = formats,
+  char_vars = FALSE,
+  factor_vars = FALSE,
+  post_dm = FALSE,
+  var_selection = c("_all")
+)
 }
 \arguments{
 \item{df}{dataframe}
